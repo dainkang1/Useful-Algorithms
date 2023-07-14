@@ -25,3 +25,8 @@ var sortNumsInPlace= function(nums) {
 };
 
 nums = [2,0,2,1,1,0]
+
+//learn about while loops and swithing places from left and right. 
+
+//learn about swaps and using destructuring to swap values
+// let swap = (a,b) => [nums[a], nums[b]] = [nums[b], nums[a]];
