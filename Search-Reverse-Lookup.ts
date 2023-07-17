@@ -39,3 +39,6 @@ type InvertedIndex = {
   
 
   //could use a TRIE datastructure to store the words and their locations in the books.
+
+  //important lesson is adding to the object. 
+  //if(!invertedIndex[lowerCaseWord]) {}
