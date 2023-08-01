@@ -1,104 +1,89 @@
-const permute = (nums) => {
-    const used = new Set();
-    const path = [];
-    const res = [];
     
-    const dfs = () => {
-        console.log('Start dfs, current path:', path);
-
-        if(path.length === nums.length) {
-            res.push([...path]);
-            console.log('Full permutation found, added to results:', path);
+    const output = []
+    const recursion = (permutation, set) =>{
+        console.log('What is permutation at STart?', permutation)
+        if(set.size === 0){
+            output.push(permutation)  
+            return
+        } 
+        for(let val of set){
+            console.log(val, 'val', set, 'set')
+            const setCopy = new Set(set)
+            console.log(setCopy, 'setCopy')
+            setCopy.delete(val)
+            console.log('Whats going on with permutation', permutation)
+            recursion([...permutation, val], setCopy)
         }
 
-        for(let i = 0; i < nums.length; i++) {
-            if(used.has(nums[i])) continue;
-
-            console.log(`Number ${nums[i]} not used, adding to path`);
-            path.push(nums[i]);
-            used.add(nums[i]);
-
-            dfs();
-
-            console.log(`Backtracking, removing ${nums[i]} from path and marking as unused`);
-            path.pop();
-            used.delete(nums[i]);
-        }
-
-        console.log('End dfs, current path:', path);
     }
+    console.log(nums, 'THIS IS WHEN RECURSION CALLED')
+    recursion([], new Set(nums))
+    return output
+};
 
-    dfs();
 
-    return res;
-}
-
-
-// Start dfs, current path: []
-// Number 1 not used, adding to path
-// Start dfs, current path: [ 1 ]
-// Number 2 not used, adding to path
-// Start dfs, current path: [ 1, 2 ]
-// Number 3 not used, adding to path
-// Start dfs, current path: [ 1, 2, 3 ]
-// Full permutation found, added to results: [ 1, 2, 3 ]
-// End dfs, current path: [ 1, 2, 3 ]
-// Backtracking, removing 3 from path and marking as unused
-// End dfs, current path: [ 1, 2 ]
-// Backtracking, removing 2 from path and marking as unused
-// Number 3 not used, adding to path
-// Start dfs, current path: [ 1, 3 ]
-// Number 2 not used, adding to path
-// Start dfs, current path: [ 1, 3, 2 ]
-// Full permutation found, added to results: [ 1, 3, 2 ]
-// End dfs, current path: [ 1, 3, 2 ]
-// Backtracking, removing 2 from path and marking as unused
-// End dfs, current path: [ 1, 3 ]
-// Backtracking, removing 3 from path and marking as unused
-// End dfs, current path: [ 1 ]
-// Backtracking, removing 1 from path and marking as unused
-// Number 2 not used, adding to path
-// Start dfs, current path: [ 2 ]
-// Number 1 not used, adding to path
-// Start dfs, current path: [ 2, 1 ]
-// Number 3 not used, adding to path
-// Start dfs, current path: [ 2, 1, 3 ]
-// Full permutation found, added to results: [ 2, 1, 3 ]
-// End dfs, current path: [ 2, 1, 3 ]
-// Backtracking, removing 3 from path and marking as unused
-// End dfs, current path: [ 2, 1 ]
-// Backtracking, removing 1 from path and marking as unused
-// Number 3 not used, adding to path
-// Start dfs, current path: [ 2, 3 ]
-// Number 1 not used, adding to path
-// Start dfs, current path: [ 2, 3, 1 ]
-// Full permutation found, added to results: [ 2, 3, 1 ]
-// End dfs, current path: [ 2, 3, 1 ]
-// Backtracking, removing 1 from path and marking as unused
-// End dfs, current path: [ 2, 3 ]
-// Backtracking, removing 3 from path and marking as unused
-// End dfs, current path: [ 2 ]
-// Backtracking, removing 2 from path and marking as unused
-// Number 3 not used, adding to path
-// Start dfs, current path: [ 3 ]
-// Number 1 not used, adding to path
-// Start dfs, current path: [ 3, 1 ]
-// Number 2 not used, adding to path
-// Start dfs, current path: [ 3, 1, 2 ]
-// Full permutation found, added to results: [ 3, 1, 2 ]
-// End dfs, current path: [ 3, 1, 2 ]
-// Backtracking, removing 2 from path and marking as unused
-// End dfs, current path: [ 3, 1 ]
-// Backtracking, removing 1 from path and marking as unused
-// Number 2 not used, adding to path
-// Start dfs, current path: [ 3, 2 ]
-// Number 1 not used, adding to path
-// Start dfs, current path: [ 3, 2, 1 ]
-// Full permutation found, added to results: [ 3, 2, 1 ]
-// End dfs, current path: [ 3, 2, 1 ]
-// Backtracking, removing 1 from path and marking as unused
-// End dfs, current path: [ 3, 2 ]
-// Backtracking, removing 2 from path and marking as unused
-// End dfs, current path: [ 3 ]
-// Backtracking, removing 3 from path and marking as unused
-// End dfs, current path: []
+nums =
+[1,2,3]
+Stdout
+[ 1, 2, 3 ] THIS IS WHEN RECURSION CALLED
+What is permutation at STart? []
+1 val Set(3) { 1, 2, 3 } set
+Set(3) { 1, 2, 3 } setCopy
+Whats going on with permutation []
+What is permutation at STart? [ 1 ]
+2 val Set(2) { 2, 3 } set
+Set(2) { 2, 3 } setCopy
+Whats going on with permutation [ 1 ]
+What is permutation at STart? [ 1, 2 ]
+3 val Set(1) { 3 } set
+Set(1) { 3 } setCopy
+Whats going on with permutation [ 1, 2 ]
+What is permutation at STart? [ 1, 2, 3 ]
+3 val Set(2) { 2, 3 } set
+Set(2) { 2, 3 } setCopy
+Whats going on with permutation [ 1 ]
+What is permutation at STart? [ 1, 3 ]
+2 val Set(1) { 2 } set
+Set(1) { 2 } setCopy
+Whats going on with permutation [ 1, 3 ]
+What is permutation at STart? [ 1, 3, 2 ]
+2 val Set(3) { 1, 2, 3 } set
+Set(3) { 1, 2, 3 } setCopy
+Whats going on with permutation []
+What is permutation at STart? [ 2 ]
+1 val Set(2) { 1, 3 } set
+Set(2) { 1, 3 } setCopy
+Whats going on with permutation [ 2 ]
+What is permutation at STart? [ 2, 1 ]
+3 val Set(1) { 3 } set
+Set(1) { 3 } setCopy
+Whats going on with permutation [ 2, 1 ]
+What is permutation at STart? [ 2, 1, 3 ]
+3 val Set(2) { 1, 3 } set
+Set(2) { 1, 3 } setCopy
+Whats going on with permutation [ 2 ]
+What is permutation at STart? [ 2, 3 ]
+1 val Set(1) { 1 } set
+Set(1) { 1 } setCopy
+Whats going on with permutation [ 2, 3 ]
+What is permutation at STart? [ 2, 3, 1 ]
+3 val Set(3) { 1, 2, 3 } set
+Set(3) { 1, 2, 3 } setCopy
+Whats going on with permutation []
+What is permutation at STart? [ 3 ]
+1 val Set(2) { 1, 2 } set
+Set(2) { 1, 2 } setCopy
+Whats going on with permutation [ 3 ]
+What is permutation at STart? [ 3, 1 ]
+2 val Set(1) { 2 } set
+Set(1) { 2 } setCopy
+Whats going on with permutation [ 3, 1 ]
+What is permutation at STart? [ 3, 1, 2 ]
+2 val Set(2) { 1, 2 } set
+Set(2) { 1, 2 } setCopy
+Whats going on with permutation [ 3 ]
+What is permutation at STart? [ 3, 2 ]
+1 val Set(1) { 1 } set
+Set(1) { 1 } setCopy
+Whats going on with permutation [ 3, 2 ]
+What is permutation at STart? [ 3, 2, 1 ]
